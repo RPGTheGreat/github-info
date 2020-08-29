@@ -9,34 +9,24 @@ This package Help you to get a github user info
 ## Example
 
 ```js
-const info = require("github-info")
+const Discord = new("discord.js");
+const client = new Discord.Client()
+const { Info } = require("userinfo-github")
+const github = new Info();
 
-(async () => {
-    console.log(await info('RPGTheGreat'));
-})();
+
+client.on("ready", () => {
+  console.log("Im on!")
+})
+
+client.on("message", async message => {
+  if(message.content === "!info") {
+    let info = await github.getInfo("RPGTheGreat")
+    message.channel.send(info)
+  }
+})
 ```
-**Note - You can also make it  embed with help of funcitions**
-## Funcitions
 
-`login` Get user name
-
-`name` Get user name
-
-`id` Get user id
-
-`avatar` Get user avatar
-
-`following` Get user following number
-
-`followers` Get user followers number
-
-`url` Get html url
-
-`repository` Get user repository number
-
-`bio` Get user bio
-
-`created_at` Get user account creation date
 
 **P.S 1 - If you have any bug report here [Github](https://github.com/RPGTheGreat/github-info)**
 
