@@ -12,7 +12,7 @@ This package Help you to get a github user info
 const Discord = require("discord.js");//required module
 const client = new Discord.Client()
 const { Info } = require("userinfo-github") //required module
-const github = new Info(); // new client
+const github = new Info(); // new info
 
 
 client.on("ready", () => {
@@ -21,8 +21,8 @@ client.on("ready", () => {
 
 client.on("message", async message => {
   if(message.content === "!info") {
-    let info = await github.getInfo(message, "RPGTheGreat") // message is required here
-    message.channel.send(info)
+    github.getInfo(message, "RPGTheGreat") // message is required here
+    //no need to do message.channel.send it's already an embed response
   }
 })
 ```

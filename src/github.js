@@ -67,7 +67,7 @@ class Info {
       }
     };
 
-    return content;
+    return message.channel.send(content)
   }
 }
   
