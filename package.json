@@ -1,0 +1,31 @@
+{
+  "name": "userinfo-github",
+  "version": "5.0.0",
+  "description": "A simple package help you to get github user information!",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RPGTheGreat/github-info.git"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "moment": "^2.27.0"
+  },
+  "keywords": [
+    "discord",
+    "info",
+    "rpg",
+    "github",
+    "discord.js"
+  ],
+  "author": "RPGTheGreat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RPGTheGreat/github-info/issues"
+  },
+  "homepage": "https://github.com/RPGTheGreat/github-info#readme"
+}
