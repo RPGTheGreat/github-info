@@ -1,7 +1,14 @@
 dependencies:
+  events: 3.2.0
   moment: 2.27.0
   node-fetch: 2.6.0
 packages:
+  /events/3.2.0:
+    dev: false
+    engines:
+      node: '>=0.8.x'
+    resolution:
+      integrity: sha512-/46HWwbfCX2xTawVfkKLGxMifJYQBWMwY1mjywRtb4c9x8l5NP3KoJtnIOiL1hfdRkIuYhETxQlo62IF8tcnlg==
   /moment/2.27.0:
     dev: false
     resolution:
@@ -16,5 +23,6 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  events: ^3.2.0
   moment: ^2.27.0
   node-fetch: ^2.6.0

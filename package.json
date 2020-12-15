@@ -1,11 +1,14 @@
 {
   "name": "userinfo-github",
-  "version": "5.0.0",
-  "description": "A simple package help you to get github user information!",
+  "version": "6.0.0",
+  "description": "A simple package help you to get github user and etc information!",
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
     "start": "node index.js"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "repository": {
     "type": "git",
@@ -13,7 +16,8 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.0",
-    "moment": "^2.27.0"
+    "moment": "^2.27.0",
+    "events": "^3.2.0"
   },
   "keywords": [
     "discord",

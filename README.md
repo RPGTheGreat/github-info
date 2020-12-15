@@ -1,15 +1,28 @@
-# Info
+# Userinfo-Github
 
-This package Help you to get a github user info
+The package help you to get a github user info and etc
+
+![Userinfo-Github](https://nodei.co/npm/userinfo-github.png)
 
 ## How to install?
 
 `npm i userinfo-github`
 
-## Example
+# Feature
 
+- User Friendly
+
+- Easy To Use
+
+- Already Embeded 
+
+- Easy Functions
+
+# Example
+
+## DISCORD.JS
 ```js
-const Discord = require("discord.js");//required module
+const Discord = require("discord.js");
 const client = new Discord.Client()
 const { Info } = require("userinfo-github") //required module
 const github = new Info(); // new info
@@ -21,11 +34,31 @@ client.on("ready", () => {
 
 client.on("message", async message => {
   if(message.content === "!info") {
-    github.getInfo(message, "RPGTheGreat") // message is required here
-    //no need to do message.channel.send it's already an embed response
+  let info =  await github.fetchInfo("RPGTheGreat")
+    message.channel.send(info) 
   }
 })
 ```
-**P.S 1 - If you have any bug report here [Github](https://github.com/RPGTheGreat/github-info)**
 
-**P.S 2 - If you need help with anything join support server [Discord](https://discord.gg/yqAGXbz)**
+## ERIS
+```js
+const Eris = require("eris")
+const client = new Eris("token")
+const { Info } = require("userinfo-github")
+const github = new Info()
+
+client.on("messageCreate", async msg => {
+  if(msg.content === "!info") {
+    let info = await github.getInfo("RPGTheGreat")
+    msg.createMessage(msg.channel.id, info)
+```
+
+# Events
+
+`error` - Returns error when error on response
+
+# Links
+
+- **[Github](https://github.com/RPGTheGreat/github-info)**
+
+- **[Discord](https://discord.gg/yqAGXbz)**

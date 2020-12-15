@@ -1,17 +1,40 @@
 const fetch = require("node-fetch");
 const moment = require("moment")
+const err = require('./error');
+const EventEmitter = require("events");
 
-class Info {
-  async getInfo(message, name) {
+class Info extends EventEmitter {
+  async fetchInfo(name) {
     
-    if(!name) return message.channel.send("Name is not given");
+    let args = {
+      embed: {
+        color: "RANDOM",
+        title: "ERROR 404",
+        description: "**Name was not given**"
+      }
+    };
+    
+    let error = {
+      embed: {
+        color: "RANDOM",
+        title: "ERROR 404",
+        description: "**No person found**"
+      }
+    }
+    
+    if(!name) return args
     
   
     
     let main = await fetch("https://api.github.com/users/" + name);
-    main = await main.json();
+  main = await main.json();
     
-    if(!main) return message.channel.send("No Person found");
+    if(main.error) {
+          this.emit('error', main.error);
+        return undefined;
+        }
+    
+    if(!main) return error
     
   
     let content = {
@@ -21,53 +44,86 @@ class Info {
         thumbnail:  main.avatar_url,
         fields: [
 		{
-			name: 'NAME',
+			name: 'Name',
 			value: `${main.login}`,
 		},
           
+          {
+            name: "Type",
+            value: `${main.type}`
+          },
+          
    {
-     name: 'ID',
+     name: 'Id',
       value: `${main.id}`,
    },
           
           {
-            name: 'BIO',
-            value: `${main.bio || "NO BIO"}`
+            name: 'Node ID',
+            value: `${main.node_id}`,
           },
           
           {
-            name: 'REPOSITORY',
-            value: `${main.public_repos || "NONE"}`
+            name: 'Bio',
+            value: `${main.bio || "No Bio"}`
           },
           
           {
-            name: 'FOLLOWERS',
+            name: "Twitter Username",
+            value: `${main.twitter_username || "None"}`
+          },
+          
+          {
+            name: "Email",
+            value: `${main.email || "None"}`
+          },
+          
+          {
+            name: "Company",
+            value: `${main.company}`
+          },
+          
+          {
+            name: 'Repository',
+            value: `${main.public_repos || "None"}`
+          },
+          
+          {
+            name: "Gist",
+            value: `${main.public_gists || "None"}`
+            },
+          
+          {
+            name: 'Followers',
             value: `${main.followers}`,
           },
           
           {
-            name: 'FOLLOWING',
+            name: 'Following',
             value: `${main.following}`,
           },
           
           {
-            name: 'LOCATION',
-            value: `${main.location || "CAN'T FIND"}`,
+            name: 'Location',
+            value: `${main.location || "Can't Find"}`,
           },
           
           {
-            name: 'ACCOUNT CREATION',
+            name: 'Creation Date',
             value: moment.utc(main.created_at).format("dddd, MMMM, Do YYYY")
           },
         
-        
+          {
+            name: "Updated At",
+            value: moment.utc(main.updated_at).format("dddd, MMMM, Do YYYY")
+          },
           ],
 	
         
       }
     };
 
-    return message.channel.send(content)
+    return content
   }
 }
   
